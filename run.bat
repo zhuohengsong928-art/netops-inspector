@@ -1,1 +1,18 @@
-QGVjaG8gb2ZmDQpjaGNwIDY1MDAxID5udWwNCmNkIC9kICV+ZHAwDQp3aGVyZSBweXRob24gPm51bCAyPm51bA0KaWYgJWVycm9ybGV2ZWwlIGVxdSAwIGdvdG8gcnVuX3B5dGhvbg0Kd2hlcmUgcHkgPm51bCAyPm51bA0KaWYgJWVycm9ybGV2ZWwlIGVxdSAwIGdvdG8gcnVuX3B5DQplY2hvIFtFUlJPUl0gUHl0aG9uIG5vdCBmb3VuZC4gUGxlYXNlIGluc3RhbGwgUHl0aG9uIDMgYW5kIHRpY2sgIkFkZCBQeXRob24gdG8gUEFUSCIuDQpwYXVzZQ0KZXhpdCAvYiAxDQo6cnVuX3B5dGhvbg0KcHl0aG9uIG5ldG9wcy5weSB0YXJnZXRzLnR4dA0KZ290byBkb25lDQo6cnVuX3B5DQpweSAtMyBuZXRvcHMucHkgdGFyZ2V0cy50eHQNCjpkb25lDQplY2hvLg0KcGF1c2UNCg==
+@echo off
+chcp 65001 >nul
+cd /d %~dp0
+where python >nul 2>nul
+if %errorlevel% equ 0 goto run_python
+where py >nul 2>nul
+if %errorlevel% equ 0 goto run_py
+echo [ERROR] Python not found. Please install Python 3 and tick "Add Python to PATH".
+pause
+exit /b 1
+:run_python
+python netops.py targets.txt
+goto done
+:run_py
+py -3 netops.py targets.txt
+:done
+echo.
+pause
